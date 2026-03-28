@@ -42,7 +42,7 @@ function App() {
   return (
     <>
       <section id="center"> 
-          <h1>Get started</h1> 
+          <h1 className='font'>Get started</h1> 
           <Suspense fallback={<h3>Loading... </h3>}>
             <Users fetchUsers={fetchUsers}></Users>
           </Suspense>
