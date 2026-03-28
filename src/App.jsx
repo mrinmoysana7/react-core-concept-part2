@@ -4,7 +4,8 @@ import Batsman from './Batsmans';
 import Counter from './Bounter';
 import Bowler from './Bowlers';
 import Users from './Users';
-import Friends from './Friends'
+import Friends from './Friends';
+import Posts from './Posts';
 
 const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
 .then(res => res.json())
@@ -14,9 +15,16 @@ const fetchFriends = async() => {
   return res.json()
 }
 
+const fetchPosts = async() => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  return res.json()
+}
+
 function App() {
 
-  const fetchPromise = fetchFriends()
+  const postsPromise = fetchPosts()
+
+  const friendPromise = fetchFriends()
  
   function clickHandler() {
     alert('I am clicked')
@@ -40,7 +48,11 @@ function App() {
           </Suspense>
 
           <Suspense fallback={<h3>My friends are cooming soon....</h3>}>
-            <Friends fetchPromise={fetchPromise}></Friends>
+            <Friends fetchPromise={friendPromise}></Friends>
+          </Suspense>
+
+          <Suspense fallback={<h3>Post are coming.......</h3>}>
+            <Posts postsPromise={postsPromise}></Posts>
           </Suspense>
 
           <Batsman></Batsman>
